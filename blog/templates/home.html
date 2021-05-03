@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    {% for post in posts %}
+    <a href="{% url 'blog:post_detail_url' slug=post.slug %}">
+        <div class="single-post">
+            <h1 class="single-post-header text-darkyellow">{{post.title}}</h1>
+            <p  class="single-post-body text-whitesmoke">{{post.body}}</p>
+            <p class="single-post-author">written by: {{post.author}}</p>
+        </div>
+    </a>    
+    {% endfor %}
+{% endblock content %}
+    

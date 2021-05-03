@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="single-post">
+        <h1 class="single-post-header text-darkyellow">{{post.title}}</h1>
+        <p  class="single-post-body text-whitesmoke" style="height: auto;">{{post.body}}</p>
+        <p class="single-post-author">written by: {{post.author}}</p>
+    </div>
+
+    <hr>
+
+    <div class="comments">
+        <h2>Comments....</h2> 
+        
+        <a href="{% url 'blog:add_comment_url' slug=post.slug %}">Add Comment</a>
+
+        
+        {% if not post.comments.all %}
+            No Comments on this post, be the first to <a href="{% url 'blog:add_comment_url' slug=post.slug %}">Add one</a>
+        {% else %}
+            {% for comment in post.comments.all %}
+                <div class="single-comment">
+                    <strong><p class="single-comment-name">{{comment.name}} - {{ comment.date_added}}</p></strong>
+                    <p class="single-comment-body">{{comment.body}}</p>
+                    
+                </div>
+                
+            {% endfor %}            
+        {% endif %}
+            
+    </div>
+
+        
+{% endblock content %}
+    

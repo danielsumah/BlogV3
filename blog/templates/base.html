@@ -1,0 +1,136 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        html {
+            height: auto;
+        }
+        body {
+            height: 100%;
+            margin: 0;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 30px;
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        .nav-left{
+            font-size: 3rem;
+        }
+        .main-bg {
+        background: #424242;
+        background: linear-gradient( #424242, #212121);
+        }
+
+        /* Text Color */
+        .text-whitesmoke {
+            color: whitesmoke
+        }
+        .text-darkyellow {
+            color: rgba(255, 235, 59, 0.432)
+        }
+
+        .single-post{
+            max-width: 50%;
+            min-width: 400px;
+            margin-bottom: 30px;
+        }
+
+        .single-post-body{
+            height: 50px;
+            overflow:hidden;
+        }
+
+        .single-post-author{
+            color: blanchedalmond;
+        }
+
+
+        /* comment section style */
+        hr{
+            border: 2px solid white;
+        }
+
+        .comments{
+            max-width: 50%;
+            min-width: 400px;
+            
+        }
+        .comments h2{
+            color: rgba(255, 235, 59, 0.432);
+            font-size: 2rem;
+
+        }
+
+        .single-comment{
+            padding-bottom: 5px;
+        }
+        .single-comment-body{
+            color: white;
+            padding-left: 10px;
+        }
+        .single-comment-name{
+            color: rgba(219, 202, 44, 0.432);
+        }
+
+        .form-button {
+            background-color: rgba(255, 235, 59, 0.24);
+            border-color: rgba(255, 235, 59, 0.24);
+            color: #e6e6e6;
+            height: 40px;
+        }
+        .form-button:hover,
+        .form-button:focus,
+        .form-button:active,
+        .form-button.active,
+        .form-button:active:focus,
+        .form-button:active:hover,
+        .form-button.active:hover,
+        .form-button.active:focus {
+            background-color: rgba(255, 235, 59, 0.473);
+            border-color: rgba(255, 235, 59, 0.473);
+            color: #e6e6e6;
+        }
+
+        .form-control:focus,
+        .border-line:focus {
+                border-color: #FFEB3B;
+                background-color: #616161;
+                color: #e6e6e6;
+            }
+            .form-control,
+            .form-control:focus {
+                box-shadow: none;
+            }
+            .form-control::-webkit-input-placeholder { color: #BDBDBD; }
+
+            .add-comment{
+                color: white;
+            }
+    </style>
+</head>
+    <body class="main-bg">
+        <nav>
+            <a href="{% url 'blog:blog_home_url' %}">
+                <nav-left class="text-whitesmoke nav-left">Sumah's blog</nav-left>
+            </a>
+            
+        </nav>
+
+        <section class="blog-body">
+            
+            {% block content %}
+                
+            {% endblock content %}
+                
+                
+        </section>
+    </body>
+</html>
