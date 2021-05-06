@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import NewUserForm, AddCommentForm
+from .forms import NewUserForm, AddCommentForm, CreatePostForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic.list import ListView
@@ -8,10 +8,33 @@ from django.views.generic.detail import DetailView
 
 from .models import Post, Comment
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 # Create your views here.
 
-class BlogCommentView(CreateView):
+# class BlogUpdateView(UpdateView):
+#     model = Post
+#     template_name = 'post_edit.html'
+#     fields = ['title', 'body']
+
+
+# class BlogDeleteView(DeleteView):
+#     model = Post
+#     template_name = 'post_delete.html'
+#     success_url = reverse_lazy('home')
+
+
+class BlogCreateView(CreateView):
+    model = Post
+    template_name = 'post_creation.html'
+    form_class = CreatePostForm
+
+
+
+class BlogCommentView(LoginRequiredMixin, CreateView):
+    # login_url = 'login/'
+    # redirect_field_name = 'next'
     model = Comment
     form_class = AddCommentForm
     template_name ='blog_post_comment.html' 
@@ -75,3 +98,7 @@ def blog_login_view(request):
 
     context = {}
     return render(request, 'blog_login.html', context)
+
+def blog_logout_view(request):
+    logout(request)
+    return redirect('blog:blog_login_url')

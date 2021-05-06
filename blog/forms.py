@@ -57,3 +57,13 @@ class AddCommentForm(forms.ModelForm):
                     }
                     ),
         }
+
+
+class CreatePostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = [
+            'title',
+            'author',
+            'body'
+            ]

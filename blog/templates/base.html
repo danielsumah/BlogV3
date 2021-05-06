@@ -117,10 +117,16 @@
     </style>
 </head>
     <body class="main-bg">
-        <nav>
+        <nav style="position: relative;">
             <a href="{% url 'blog:blog_home_url' %}">
                 <nav-left class="text-whitesmoke nav-left">Sumah's blog</nav-left>
             </a>
+
+            <span style="position: absolute; right: 10px; color: white;">
+                <a href="{% url 'blog:blog_login_url' %}" style="color: yellow;">LOGIN </a>
+                to be able to comment on a Post   
+                <span> <a href="{% url 'blog:blog_logout_url' %}" style="color: red; padding-left: 20px;">LOGOUT</a></span>
+            </span>
             
         </nav>
 
