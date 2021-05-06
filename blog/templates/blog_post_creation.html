@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+<style>
+    input#id_title, #id_author{
+        min-width: 300px;
+        max-width: 600px;
+        height: 50px;
+    }
+
+    #id_body{
+        min-width: 300px;
+        max-width: 600px;
+        height: 100px;
+    }
+</style>
+
+{% block content %}
+    <form method="POST" class="add-comment">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <input class="form-button button-l margin-b" type="submit" value="Create Post">
+    </form>
+{% endblock content %}
+    

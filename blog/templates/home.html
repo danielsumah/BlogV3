@@ -2,14 +2,20 @@
 
 
 {% block content %}
-    {% for post in posts %}
+    <h4>
+        <a href="{% url 'blog:blog_post_create_url' %}" style="text-decoration: none; color: white; background-color: blue; padding: 5px; border-radius: 1px;">
+            Create New Post
+        </a>
+    </h4>
+    {% for post in posts reversed %}
     <a href="{% url 'blog:post_detail_url' slug=post.slug %}">
         <div class="single-post">
-            <h1 class="single-post-header text-darkyellow">{{post.title}}</h1>
+            <h1 class="single-post-header text-darkyellow">{{post.title}} - {{ post.date_added }}</h1>
             <p  class="single-post-body text-whitesmoke">{{post.body}}</p>
             <p class="single-post-author">written by: {{post.author}}</p>
         </div>
     </a>    
+    <hr style="color: white;">
     {% endfor %}
 {% endblock content %}
     

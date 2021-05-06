@@ -62,8 +62,10 @@ class AddCommentForm(forms.ModelForm):
 class CreatePostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = [
-            'title',
-            'author',
-            'body'
-            ]
+        fields = ('title', 'author', 'body')
+
+        widgets ={
+            'title':forms.TextInput(attrs={'class':'create-post-title'}),
+            # 'author':forms.TextInput(attrs={'class':'form-control'}),
+            'body':forms.Textarea(attrs={'class':'create-post-body'}),
+        }

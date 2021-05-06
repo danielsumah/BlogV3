@@ -27,8 +27,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 class BlogCreateView(CreateView):
     model = Post
-    template_name = 'post_creation.html'
     form_class = CreatePostForm
+    template_name = 'blog_post_creation.html'
+    success_url = '/'
+    
 
 
 

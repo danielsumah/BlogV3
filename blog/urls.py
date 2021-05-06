@@ -1,9 +1,11 @@
 from django.urls import path
-from blog.views import blog_login_view, blog_logout_view, blog_register_view, BlogHomeView, BlogDetailView, BlogCommentView
+from blog.views import blog_login_view, blog_logout_view, blog_register_view, BlogHomeView, BlogDetailView, BlogCommentView, BlogCreateView
 
 
 app_name = 'blog'
 urlpatterns = [
+
+    path('create_post/', BlogCreateView.as_view(), name='blog_post_create_url'),
     path('accounts/logout/', blog_logout_view, name='blog_logout_url'),
     path('accounts/login/', blog_login_view, name='blog_login_url'),
     path('login/', blog_login_view, name='blog_login_url'),
