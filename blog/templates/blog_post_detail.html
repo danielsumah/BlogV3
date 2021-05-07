@@ -8,18 +8,31 @@
         <p class="single-post-author">written by: {{post.author}}</p>
     </div>
 
+    
+    {% if request.user.is_authenticated %}
+        
+        {% if request.user.name == 'admin' %}
+            <span>
+                <a href="{% url 'blog:blog_post_update_url' slug=post.slug %}" style="color: Orange; margin-right: 40px;">Update Post</a>
+                <a href="{% url 'blog:blog_post_delete_url' slug=post.slug %}" style="color: red;">Delete Post</a>
+            </span>
+        {% endif %}
+            
+    {% endif %}
+    
     <hr>
 
     <div class="comments">
         <h2>Comments....</h2> 
         
+    
         <a href="{% url 'blog:add_comment_url' slug=post.slug %}" style="color: yellow;">Add Comment</a>
 
         
         {% if not post.comments.all %}
             No Comments on this post, be the first to <a href="{% url 'blog:add_comment_url' slug=post.slug %}">Add one</a>
         {% else %}
-            {% for comment in post.comments.all %}
+            {% for comment in post.comments.all reversed %}
                 <div class="single-comment">
                     <strong><p class="single-comment-name">{{comment.name}} - {{ comment.date_added}}</p></strong>
                     <p class="single-comment-body">{{comment.body}}</p>

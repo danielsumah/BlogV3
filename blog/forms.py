@@ -8,6 +8,7 @@ class NewUserForm(UserCreationForm):
                         widget=forms.TextInput(
                             attrs={
                                 'class': 'form-control',
+                                'placeholder':'username',
                                 }
                             )
                         )
@@ -15,6 +16,7 @@ class NewUserForm(UserCreationForm):
                         widget=forms.TextInput(
                             attrs={
                                 'class': 'form-control',
+                                'placeholder':'email',
                                 }
                             )
                         )
@@ -23,6 +25,7 @@ class NewUserForm(UserCreationForm):
                         widget=forms.PasswordInput(
                             attrs={
                                 'class': 'form-control',
+                                'placeholder':'password',
                                 }
                             )
                         )
@@ -30,6 +33,7 @@ class NewUserForm(UserCreationForm):
                         widget=forms.PasswordInput(
                             attrs={
                                 'class': 'form-control',
+                                'placeholder':'confirm password',
                                 }
                             )
                         )

@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sumahwrites</title>
 
     <style>
         html {
@@ -128,9 +128,18 @@
             </a>
 
             <span style="position: absolute; right: 10px; color: white;">
+                
+                {% if not request.user.is_authenticated %}
                 <a href="{% url 'blog:blog_login_url' %}" style="color: yellow;">LOGIN </a>
-                to be able to comment on a Post   
-                <span> <a href="{% url 'blog:blog_logout_url' %}" style="color: red; padding-left: 20px;">LOGOUT</a></span>
+                to be able to comment on a Post 
+                {% endif %}                    
+                  
+                
+                {% if request.user.is_authenticated %}
+                    <span> <a href="{% url 'blog:blog_logout_url' %}" style="color: red; padding-left: 20px;">LOGOUT</a></span>
+                {% endif %}
+                    
+                
             </span>
             
         </nav>

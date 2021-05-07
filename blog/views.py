@@ -3,29 +3,41 @@ from .forms import NewUserForm, AddCommentForm, CreatePostForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.detail import DetailView
 
 from .models import Post, Comment
 
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 
 # Create your views here.
 
-# class BlogUpdateView(UpdateView):
-#     model = Post
-#     template_name = 'post_edit.html'
-#     fields = ['title', 'body']
+class BlogUpdateView(PermissionRequiredMixin, UpdateView):
+    # permission 
+    permission_required = 'blog.change_post'
+
+    model = Post
+    template_name = 'blog_post_update.html'
+    fields = ['title', 'body']
+    success_url = '/'
+    
 
 
-# class BlogDeleteView(DeleteView):
-#     model = Post
-#     template_name = 'post_delete.html'
-#     success_url = reverse_lazy('home')
+class BlogDeleteView(PermissionRequiredMixin, DeleteView):
+    # permission 
+    permission_required = 'blog.delete_post'
+
+    model = Post
+    template_name = 'blog_post_delete.html'
+    context_object_name = 'post'
+    success_url = '/'
 
 
-class BlogCreateView(CreateView):
+class BlogCreateView(PermissionRequiredMixin, CreateView):
+    # permission 
+    permission_required = 'blog.add_post'
+
     model = Post
     form_class = CreatePostForm
     template_name = 'blog_post_creation.html'
@@ -103,4 +115,4 @@ def blog_login_view(request):
 
 def blog_logout_view(request):
     logout(request)
-    return redirect('blog:blog_login_url')
+    return redirect('blog:blog_home_url')
